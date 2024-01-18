@@ -1,0 +1,73 @@
+using System;
+
+namespace ControleClientes
+{
+    class Clientes
+    {
+        public string nome;
+        public string endereco;
+        public float valor;
+        public float valor_imposto;
+        public float total;
+
+        public void Pagar_Imposto(float v)
+        {
+            valor_imposto = v;
+            total = valor - valor_imposto;
+        }
+    }
+
+    class PessoaFisica : Clientes
+    {
+        public string cpf;
+        public string rg;
+    }
+
+    class PessoaJuridica : Clientes
+    {
+        public string cnpj;
+        public string ie;
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            PessoaFisica pf = new PessoaFisica();
+            PessoaJuridica pj = new PessoaJuridica();
+
+            pf.nome = "João";
+            pf.endereco = "Rua A, 123";
+            pf.valor = 1000;
+            pf.cpf = "123.456.789-00";
+            pf.rg = "12.345.678-9";
+
+            pj.nome = "Empresa X";
+            pj.endereco = "Rua B, 456";
+            pj.valor = 5000;
+            pj.cnpj = "12.345.678/0001-90";
+            pj.ie = "123456789";
+
+            pf.Pagar_Imposto(100);
+            pj.Pagar_Imposto(500);
+
+            Console.WriteLine("Nome: " + pf.nome);
+            Console.WriteLine("CPF: " + pf.cpf);
+            Console.WriteLine("RG: " + pf.rg);
+            Console.WriteLine("Valor: " + pf.valor);
+            Console.WriteLine("Valor do Imposto: " + pf.valor_imposto);
+            Console.WriteLine("Total: " + pf.total);
+
+            Console.WriteLine();
+
+            Console.WriteLine("Nome: " + pj.nome);
+            Console.WriteLine("CNPJ: " + pj.cnpj);
+            Console.WriteLine("IE: " + pj.ie);
+            Console.WriteLine("Valor: " + pj.valor);
+            Console.WriteLine("Valor do Imposto: " + pj.valor_imposto);
+            Console.WriteLine("Total: " + pj.total);
+
+            Console.ReadKey();
+        }
+    }
+}
